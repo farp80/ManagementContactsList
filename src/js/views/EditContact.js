@@ -74,7 +74,7 @@ export default class EditContact extends React.Component {
 										type="button"
 										className="btn btn-primary form-control"
 										onClick={() =>
-											actions.addContact(
+											actions.editContact(
 												this.state.fullName === null
 													? currentCustomer.full_name
 													: this.state.fullName,
@@ -82,7 +82,8 @@ export default class EditContact extends React.Component {
 													? currentCustomer.address
 													: this.state.address,
 												this.state.email === null ? currentCustomer.email : this.state.email,
-												this.state.phone === null ? currentCustomer.phone : this.state.phone
+												this.state.phone === null ? currentCustomer.phone : this.state.phone,
+												customerId
 											)
 										}>
 										{"Update"}

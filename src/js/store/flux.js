@@ -13,7 +13,6 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			addContact: (fullname, address, email, phone) => {
-				console.log("## " + fullname + " " + email + " " + address + " " + phone);
 				let bodyToAdd = {
 					full_name: fullname,
 					email: email,
@@ -84,7 +83,6 @@ const getState = ({ getStore, setStore }) => {
 								contants[i].email = email;
 							}
 						}
-						console.log(contants);
 						setStore({ contacts: contants });
 					})
 					.catch(error => {
