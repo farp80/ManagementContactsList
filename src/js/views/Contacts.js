@@ -9,7 +9,8 @@ export default class Contacts extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			showModal: false
+			showModal: false,
+			tempId: ""
 		};
 	}
 
@@ -34,7 +35,7 @@ export default class Contacts extends React.Component {
 										<ul className="list-group pull-down" id="contact-list" key={index}>
 											<ContactCard
 												key={index}
-												onDelete={() => this.setState({ showModal: true })}
+												onDelete={id => this.setState({ showModal: true, tempId: id })}
 												contactsSettings={item}
 											/>
 										</ul>
@@ -44,7 +45,11 @@ export default class Contacts extends React.Component {
 						}}
 					</Context.Consumer>
 				</div>
-				<Modal show={this.state.showModal} onClose={() => this.setState({ showModal: false })} />
+				<Modal
+					id={this.state.tempId}
+					show={this.state.showModal}
+					onClose={() => this.setState({ showModal: false })}
+				/>
 			</div>
 		);
 	}

@@ -26,7 +26,7 @@ class ContactCard extends React.Component {
 							<button className="btn">
 								<i className="fas fa-pencil-alt mr-3" />
 							</button>
-							<button className="btn" onClick={() => this.props.onDelete()}>
+							<button className="btn" onClick={() => this.props.onDelete(this.props.contactsSettings.id)}>
 								<i className="fas fa-trash-alt" />
 							</button>
 						</div>
@@ -64,7 +64,7 @@ class ContactCard extends React.Component {
 ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
-	contactsSettings: PropTypes.func
+	contactsSettings: PropTypes.object
 };
 
 /**
