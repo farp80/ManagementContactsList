@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class ContactCard extends React.Component {
 	constructor() {
@@ -23,9 +24,11 @@ class ContactCard extends React.Component {
 					</div>
 					<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 						<div className=" float-right">
-							<button className="btn">
-								<i className="fas fa-pencil-alt mr-3" />
-							</button>
+							<Link to={"/edit/" + this.props.contactsSettings.id}>
+								<button className="btn">
+									<i className="fas fa-pencil-alt mr-3" />
+								</button>
+							</Link>
 							<button className="btn" onClick={() => this.props.onDelete(this.props.contactsSettings.id)}>
 								<i className="fas fa-trash-alt" />
 							</button>

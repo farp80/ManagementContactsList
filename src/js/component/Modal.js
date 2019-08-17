@@ -42,14 +42,20 @@ class Modal extends React.Component {
 							{({ store, actions }) => {
 								return (
 									<div className="modal-footer">
-										<button type="button" className="btn btn-primary">
+										<button
+											type="button"
+											className="btn btn-primary"
+											onClick={() => this.props.onClose()}>
 											{"Oh no!"}
 										</button>
 										<button
 											type="button"
 											className="btn btn-secondary"
 											data-dismiss="modal"
-											onClick={() => actions.onDeleteContact(this.props.id)}>
+											onClick={() => {
+												actions.onDeleteContact(this.props.id);
+												this.props.onClose();
+											}}>
 											{"Do it!"}
 										</button>
 									</div>
@@ -70,7 +76,7 @@ Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
 	show: PropTypes.bool,
-	id: PropTypes.number
+	id: PropTypes.string
 };
 
 /**
