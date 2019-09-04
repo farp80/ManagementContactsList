@@ -40,7 +40,7 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			onDeleteContact: contactId => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + contactId, {
+				fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact/" + contactId, {
 					method: "DELETE"
 				})
 					.then(data => {
@@ -73,18 +73,25 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => {
 						const store = getStore();
 						delete bodyToAdd.agenda_slug;
-						let contants = store.contacts;
-
-						for (let i = 0; i < contants.length; i++) {
-							if (contants[i].id === id) {
-								contants[i].full_name = fullname;
-								contants[i].address = address;
-								contants[i].phone = phone;
-								contants[i].email = email;
+						let contacts = store.contacts;
+						console.log("CONTATCS " + contacts.length);
+						for (let i = 0; i < contacts.length; i++) {
+							console.log(" ID: " + contacts[i].id + " " + id);
+							if (contacts[i].id === id) {
+								contacts[i].full_name = fullname;
+								contacts[i].address = address;
+								contacts[i].phone = phone;
+								contacts[i].email = email;
 							}
 						}
-						setStore({ contacts: contants });
+						setStore({ contacts: contacts });
 					})
+					.catch(error => {
+						console.log(error);
+					});
+				fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact")
+					.then(response => response.json())
+					.then(data => setStore({ contacts: data }))
 					.catch(error => {
 						console.log(error);
 					});

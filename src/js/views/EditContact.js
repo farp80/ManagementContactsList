@@ -25,13 +25,8 @@ export default class EditContact extends React.Component {
 				<Context.Consumer>
 					{({ store, actions }) => {
 						let customerId = this.props.match.params.theid;
-						console.log("CUSTOMER" + customerId);
-						var f = store.contacts;
-						f.forEach(function(s) {
-							console.log("ID: " + s.id);
-						});
-						let currentCustomer = f.find(x => x.id == customerId);
-						console.log("CURRENT: " + currentCustomer);
+						let contacts = store.contacts;
+						let currentCustomer = contacts.find(x => x.id == customerId);
 						return (
 							<div>
 								<h1 className="text-center mt-5">{"Edit contact"}</h1>
