@@ -5,7 +5,7 @@ const getState = ({ getStore, setStore }) => {
 		},
 		actions: {
 			getContacts: () => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/nerroazurro14")
+				fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact")
 					.then(response => response.json())
 					.then(data => setStore({ contacts: data }))
 					.catch(error => {
@@ -20,7 +20,7 @@ const getState = ({ getStore, setStore }) => {
 					address: address,
 					phone: phone
 				};
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact", {
 					method: "POST",
 					body: JSON.stringify(bodyToAdd),
 					headers: {
@@ -60,7 +60,7 @@ const getState = ({ getStore, setStore }) => {
 					address: address,
 					phone: phone
 				};
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+				fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact/" + id, {
 					method: "PUT",
 					body: JSON.stringify(bodyToAdd),
 					headers: {
