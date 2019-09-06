@@ -29,6 +29,7 @@ class ContactCard extends React.Component {
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>
 							</Link>
+
 							<button className="btn" onClick={() => this.props.onDelete(this.props.contactsSettings.id)}>
 								<i className="fas fa-trash-alt" />
 							</button>

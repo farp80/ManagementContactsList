@@ -12,7 +12,7 @@ const getState = ({ getStore, setStore }) => {
 						console.log(error);
 					});
 			},
-			addContact: (fullname, address, email, phone) => {
+			addContact: (fullname, address, email, phone, history) => {
 				let bodyToAdd = {
 					full_name: fullname,
 					email: email,
@@ -30,10 +30,13 @@ const getState = ({ getStore, setStore }) => {
 					.then(response => {
 						return response.json();
 					})
-					.then(data => {
-						const store = getStore();
-						delete bodyToAdd.agenda_slug;
-						setStore({ contacts: store.contacts.concat(bodyToAdd) });
+					.then(() => {
+						fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact")
+							.then(response => response.json())
+							.then(data => setStore({ contacts: data }), history.push("/contacts"))
+							.catch(error => {
+								console.log(error);
+							});
 					})
 					.catch(error => {
 						console.log(error);
@@ -70,28 +73,14 @@ const getState = ({ getStore, setStore }) => {
 					.then(response => {
 						return response.json();
 					})
-					.then(data => {
-						const store = getStore();
-						delete bodyToAdd.agenda_slug;
-						let contacts = store.contacts;
-						console.log("CONTATCS " + contacts.length);
-						for (let i = 0; i < contacts.length; i++) {
-							console.log(" ID: " + contacts[i].id + " " + id);
-							if (contacts[i].id === id) {
-								contacts[i].full_name = fullname;
-								contacts[i].address = address;
-								contacts[i].phone = phone;
-								contacts[i].email = email;
-							}
-						}
-						setStore({ contacts: contacts });
+					.then(() => {
+						fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact")
+							.then(response => response.json())
+							.then(data => setStore({ contacts: data }))
+							.catch(error => {
+								console.log(error);
+							});
 					})
-					.catch(error => {
-						console.log(error);
-					});
-				fetch("https://3000-c814bd77-10fa-4924-ad44-b41618a0b5f1.ws-us1.gitpod.io/contact")
-					.then(response => response.json())
-					.then(data => setStore({ contacts: data }))
 					.catch(error => {
 						console.log(error);
 					});
